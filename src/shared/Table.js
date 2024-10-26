@@ -7,7 +7,7 @@ import {
 import { useMemo } from "react";
 import NoData from "./NoData";
 
-const Table = ({ columns, data, header, type }) => {
+const Table = ({ columns, data, header, type, onRowClick = () => {} }) => {
   data = useMemo(() => data, [data]);
   columns = useMemo(() => columns, [columns]);
 
@@ -29,7 +29,7 @@ const Table = ({ columns, data, header, type }) => {
                 <tr className="" key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
                     <th
-                      className="px-4 py-4 max-md:py-2 text-[12px] max-md:text-[10px] font-semibold whitespace-nowrap border-r-[0.5px] border-[#ddd]"
+                      className="px-2 py-2 text-[14px] max-md:text-[12px] font-semibold whitespace-nowrap border-r-[0.5px] border-[#ddd]"
                       key={header.id}
                       colSpan={header.colSpan}
                     >
@@ -46,7 +46,13 @@ const Table = ({ columns, data, header, type }) => {
             </thead>
             <tbody>
               {table.getRowModel().rows.map((row) => (
-                <tr className="relative border-b-[0.5px]" key={row.id}>
+                <tr
+                  onClick={() => {
+                    onRowClick(row.original);
+                  }}
+                  className="relative border-b-[0.5px]"
+                  key={row.id}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <td
                       className="px-2 py-1 text-[14px] max-md:text-[12px] border-r-[0.5px] border-b-[0.5px] border-[#ddd]"

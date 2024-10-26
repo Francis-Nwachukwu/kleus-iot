@@ -33,7 +33,7 @@ const InputSelect = ({
           name={name}
           onChange={onChange}
           disabled={disabledSelect}
-          className={`appearance-none flex items-center justify-center w-full h-[40px] max-md:h-[40px] max-md:text-[12px] px-2 border border-[#CCC] rounded-lg ${className}`}
+          className={`appearance-none flex items-center justify-center w-full h-[40px] max-md:h-[40px] max-md:text-[12px] px-2 border border-[#CCC] rounded-sm ${className}`}
         >
           {optionsHolder && (
             <option

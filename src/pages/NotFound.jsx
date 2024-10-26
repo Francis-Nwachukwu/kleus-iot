@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const NotFound = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center">
-      <Link to={"/"} className="pb-1 border-b-2 border-eden">
+      <Link to={"/admin/home/index"} className="pb-1 border-b-2 underline">
         <motion.p whileHover={{ scale: 1.2 }} transition={{ duration: 0.5 }}>
           You seem lost? Login
         </motion.p>

@@ -8,6 +8,7 @@ module.exports = {
         textGrey: "#777",
         textGreen: "#008000",
         textRed: "#B42318",
+        lightBlue: "#1976d2",
       },
     },
   },

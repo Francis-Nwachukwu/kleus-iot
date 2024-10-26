@@ -18,6 +18,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { sidebarContents } from "utils/data";
 import Fade from "@mui/material/Fade";
+import { Popover } from "@mui/material";
 
 const drawerWidth = 290;
 
@@ -100,10 +101,21 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Layout({ children, className }) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
-  const [isLogoutOpen, setIsLogoutOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const [selectedAccordion, setSelectedAccordion] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const popoverOpen = Boolean(anchorEl);
+  const id = popoverOpen ? "simple-popover" : undefined;
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleExpansion = (id) => {
     setSelectedAccordion(id);
@@ -146,7 +158,8 @@ export default function Layout({ children, className }) {
               </p>
             </Link>
             <div
-              onClick={() => setIsLogoutOpen((prev) => !prev)}
+              aria-describedby={id}
+              onClick={handleClick}
               className="flex items-center gap-2 cursor-pointer"
             >
               <p className="text-[14px] max-md:text-[12px]">Ayobami</p>
@@ -154,19 +167,27 @@ export default function Layout({ children, className }) {
             </div>
           </div>
         </Toolbar>
-        {isLogoutOpen && (
+        <Popover
+          id={id}
+          open={popoverOpen}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+        >
           <div
-            className={`w-[30vw] absolute top-[64px] right-0 bg-white shadow-lg p-2 flex justify-between items-center`}
-            style={{ zIndex: "2000" }}
+            className={`w-[30vw] max-md:w-fit bg-white shadow-lg p-2 flex max-md:flex-col gap-2 justify-between items-center`}
           >
-            <div className="bg-[#00a65a] hover:bg-opacity-90 cursor-pointer px-4 py-2 rounded-md text-[14px] max-md:text-[12px]">
+            <div className="bg-[#00a65a] text-white hover:bg-opacity-90 cursor-pointer px-4 py-2 rounded-md text-[14px] max-md:text-[12px]">
               Modify Password
             </div>
-            <div className="bg-[#dd4b39] hover:bg-opacity-90 cursor-pointer px-4 py-2 rounded-md text-[14px] max-md:text-[12px]">
+            <div className="bg-[#dd4b39] max-md:w-full text-white hover:bg-opacity-90 cursor-pointer px-4 py-2 rounded-md text-[14px] max-md:text-[12px]">
               Logout
             </div>
           </div>
-        )}
+        </Popover>
       </AppBar>
       <Drawer variant="permanent" open={open} className="w-[500px]">
         <DrawerHeader>
@@ -223,7 +244,13 @@ export default function Layout({ children, className }) {
               </AccordionSummary>
               <AccordionDetails className="!flex !flex-col !gap-1">
                 {children.map(({ id, title, icon, href }) => (
-                  <Link className="relative left-2" key={id} to={href}>
+                  <Link
+                    aria-label={title}
+                    title={title}
+                    className="relative left-2"
+                    key={id}
+                    to={href}
+                  >
                     <div className="flex gap-2 items-center">
                       <span className="text-[12px]">{icon}</span>
                       {open && (
@@ -240,7 +267,7 @@ export default function Layout({ children, className }) {
         </div>
       </Drawer>
       <div
-        className={`mt-16 overflow-y-auto bg-[#ecf0f5] h-[calc(100vh-64px)] flex gap-6 p-6 max-md:p-4 ${className} flex-col flex-1`}
+        className={`mt-16 overflow-y-auto bg-[#ecf0f5] h-[calc(100vh-64px)] flex gap-6 max-md:gap-3 p-6 max-md:p-4 max-sm:p-2 ${className} flex-col flex-1`}
       >
         {children}
       </div>

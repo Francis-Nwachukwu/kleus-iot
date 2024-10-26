@@ -1,8 +1,8 @@
 import { useState } from "react";
 import InputField from "shared/InputField";
-import Button from "shared/Button";
+import CustomButton from "shared/Button";
 import ButtonAnimation from "shared/ButtonAmination";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 // import { login } from "appstate/features/auth/authActions";
@@ -19,7 +19,7 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +29,8 @@ const Register = () => {
     //     navigate("/admin/users");
     //   }
     // });
+
+    navigate("/admin/home/index");
   };
 
   return (
@@ -100,9 +102,12 @@ const Register = () => {
               )}
             </div>
             <div className="w-full mb-2">
-              <Button className={"!bg-redDevil !min-w-full"} type="submit">
+              <CustomButton
+                className={"!bg-redDevil !min-w-full"}
+                type="submit"
+              >
                 {isLoading ? <ButtonAnimation /> : "Register"}
-              </Button>
+              </CustomButton>
             </div>
             <div className="flex justify-end items-center mb-8 max-md:mb-4">
               <div>
