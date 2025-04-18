@@ -16,6 +16,7 @@ const InputField = ({
   required,
   divClass,
   accept,
+  labelStyle,
 }) => {
   const defaultClass =
     "h-[40px] appearance-none bg-white border border-[#ccc] px-2 rounded-sm placeholder:text-[12px] text-sm font-normal";
@@ -25,7 +26,7 @@ const InputField = ({
       {label && (
         <div className="flex items-center">
           <label
-            className="text-[14px] max-md:text-[12px] mb-[5px] font-medium"
+            className={`text-[14px] max-md:text-[12px] mb-[5px] font-medium ${labelStyle}`}
             htmlFor={htmlFor}
           >
             {label}

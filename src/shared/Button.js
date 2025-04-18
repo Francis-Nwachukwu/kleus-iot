@@ -9,7 +9,7 @@ const CustomButton = ({
   animate,
 }) => {
   const defaultClass =
-    "whitespace-nowrap text-white text-[14px] max-md:text-[12px] bg-[#337ab7] hover:bg-opacity-90 px-3 py-1 rounded-sm flex gap-1 justify-center items-center";
+    "whitespace-nowrap text-white text-[14px] max-md:text-[12px] bg-[#337ab7] hover:bg-opacity-90 px-4 py-2 rounded-sm flex gap-1 justify-center items-center";
   return (
     <motion.button
       whileHover={animate && { scale: 1.1 }}

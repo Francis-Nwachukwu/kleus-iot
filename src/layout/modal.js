@@ -7,7 +7,7 @@ const EminiModal = ({
   onClose,
   children,
   className,
-  title = "Emini",
+  title = "Haymini",
 }) => {
   return (
     <Modal

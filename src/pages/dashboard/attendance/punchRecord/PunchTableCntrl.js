@@ -4,8 +4,20 @@ import InputField from "shared/InputField";
 import InputSelect from "shared/InputSelect";
 import { FaSearch } from "react-icons/fa";
 import { FaFileExport } from "react-icons/fa";
+import request from "api";
 
 const PunchTableCntrl = () => {
+  const exportLogs = async () => {
+    try {
+      const response = await request.post(
+        "http://54.81.132.129:7788/ws.php?action=exportLogs"
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-wrap gap-2 items-center">
       <div className="max-sm:w-full">
@@ -44,7 +56,12 @@ const PunchTableCntrl = () => {
           </CustomButton>
         </div>
         <div>
-          <CustomButton className={"!bg-textGreen"}>
+          <CustomButton
+            onClick={() => {
+              exportLogs();
+            }}
+            className={"!bg-textGreen"}
+          >
             <FaFileExport />
             <p>Export</p>
           </CustomButton>

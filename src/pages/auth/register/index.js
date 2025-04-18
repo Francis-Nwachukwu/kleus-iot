@@ -36,7 +36,7 @@ const Register = () => {
   return (
     <div className="flex items-center h-screen">
       <div className="w-2/5 h-full max-md:hidden bg-[#2F4C67] flex justify-center items-center p-4">
-        <p>Emini Platform</p>
+        <p>Haymini Platform</p>
       </div>
       <div className="w-3/5 max-md:w-full h-fit flex justify-center">
         <div className="w-3/5 max-md:w-4/5 flex flex-col py-6 px-12 max-md:px-6 max-md:py-6 border border-[#ccc] rounded-lg">

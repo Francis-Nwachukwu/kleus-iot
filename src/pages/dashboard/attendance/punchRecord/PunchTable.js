@@ -1,6 +1,9 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import Table from "shared/Table";
 import { FaDotCircle } from "react-icons/fa";
+import { useEffect } from "react";
+import request from "api";
+import { get_logs } from "appstate/api/logs";
 
 const PunchTable = () => {
   const { accessor } = createColumnHelper();
@@ -82,6 +85,21 @@ const PunchTable = () => {
       record: { 1: true, 2: true, 3: false, 4: true },
     },
   ];
+
+  useEffect(() => {
+    const getLogs = async () => {
+      try {
+        const response = await request.get(
+          "http://54.81.132.129:7788/ws.php?action=getLogs"
+        );
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getLogs();
+  }, []);
 
   return (
     <Table

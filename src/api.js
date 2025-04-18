@@ -6,8 +6,10 @@ export const injectStore = (_store) => {
   store = _store;
 };
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
 const request = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL,
 });
 
 request.interceptors.request.use((config) => {

@@ -154,7 +154,7 @@ export default function Layout({ children, className }) {
           <div className="w-full flex justify-between items-center">
             <Link to={"/dashboard"}>
               <p className="text-[18px] max-md:text-[14px] font-semibold">
-                Emini platform
+                Haymini platform
               </p>
             </Link>
             <div
